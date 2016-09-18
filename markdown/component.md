@@ -372,7 +372,37 @@ shouldComponentUpdate(nextProps,nextState){}
 
 ### key属性
 
+`key`的作用是为了在React元素变更后，**达到最低限度的DOM变更**。
 
+`key`这个属性不是给用户自己用的，而是给 React 自己用的。如果我们动态地创建 React 元素，而且 React 元素内包含数量或顺序不确定的子元素时，我们就需要提供 key 这个特殊的属性，而且在兄弟组件中必须是唯一的。要不然会打印报警：
+
+```jsx
+Warning: Each child in an array or iterator should have a unique "key" prop. 
+Check the render method of `App`. 
+See https://fb.me/react-warning-keys for more information.
+```
+
+看下codepen例子：[组件的一些特殊属性之key](https://codepen.io/nange/pen/ZpQyWw?target=_blank)
+
+```jsx
+//自定义组件首字母要大写
+var App = React.createClass({
+  render: function() {
+    var data = [1,2,3,4,5];
+    return (
+      <ul>
+        {
+          data.map(function(v,k){
+            return (
+              <li key={k}>{v}</li>
+            )
+          })
+        }
+      </ul>
+    );
+  }
+});
+```
 
 ### ref属性
 
@@ -470,8 +500,28 @@ var App = React.createClass({
 
 为了防止各种 XSS 攻击， React 默认会转义所有字符串。如果想在 JSX 表达式中显示 HTML 实体，可以会遇到二次转义的问题。而使用此属性后插入的html没经过React处理，需要自行处理XSS防御。而且插入的html是脱离了React的控制的，跟React组件渲染完成后我们使用innerHTML自行插入html一样不会生成`虚拟DOM`。
 
+如下面例子，就是经过了二次转义和没经过二次转义的区别：
+
 ```jsx
-<div dangerouslySetInnerHTML={{_html: "<div></div>"}} />
+//自定义组件首字母要大写
+var App = React.createClass({
+  render: function() {
+    var data = "&nbsp;我前面有一个空格,但是被二次转义了"
+    var text = <div>{data}</div>
+    var text2 = (
+      <div>
+        &nbsp;我前面有一个空格,没被二次转义，因为在这没使用JSX表达式
+        （{String.fromCharCode(123)+String.fromCharCode(125)}）
+      </div>
+    )
+    return (
+      <div>
+        {text}
+        {text2}
+      </div>
+    );
+  }
+});
 ```
 
 请看codepen列子：[组件的一些特殊属性之dangerouslySetInnerHTML](https://codepen.io/nange/pen/kkPmwr?target=_blank)

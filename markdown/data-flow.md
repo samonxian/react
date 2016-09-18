@@ -1,6 +1,6 @@
 # 数据流和沟通
 
-本章会讲关于React的单向数据流、沟通相关的属性和组件之间沟通方式。
+本章会讲关于React的单向数据流和组件之间沟通方式。
 
 ## 单向数据流
 
@@ -283,76 +283,6 @@ codepen例子：[React组件之兄弟组件沟通2](https://codepen.io/nange/pen
 ### 组件沟通总结
 
 简单的组件交流我们可以使用上面非全局事件的简单方式，但是当项目复杂，组件间层次越来越深，上面的交流方式就不太合适（当然还是要用到的，简单的交流）。强烈建议使用Flux、Relay、Redux、trandux等类库其中一种，这些类库不只适合React，像Angular等都可以使用。
-
-## 组件的一些特殊属性
-
-### 属性[key](https://facebook.github.io/react/docs/reconciliation.html)
-
-`key`的作用是为了在React元素变更后，**达到最低限度的DOM变更**。
-
-`key`这个属性不是给用户自己用的，而是给 React 自己用的。如果我们动态地创建 React 元素，而且 React 元素内包含数量或顺序不确定的子元素时，我们就需要提供 key 这个特殊的属性，而且在兄弟组件中必须是唯一的。要不然会打印报警：
-
-```jsx
-Warning: Each child in an array or iterator should have a unique "key" prop. 
-Check the render method of `App`. 
-See https://fb.me/react-warning-keys for more information.
-```
-
-看下codepen例子：[组件的一些特殊属性之key](https://codepen.io/nange/pen/ZpQyWw)
-
-```jsx
-//自定义组件首字母要大写
-var App = React.createClass({
-  render: function() {
-    var data = [1,2,3,4,5];
-    return (
-      <ul>
-        {
-          data.map(function(v,k){
-            return (
-              <li key={k}>{v}</li>
-            )
-          })
-        }
-      </ul>
-    );
-  }
-});
-```
-
-### 属性[ref](https://facebook.github.io/react/docs/more-about-refs-zh-CN.html)
-
-`ref`是个非常好用的属性，并且在不断完善，最新版本比之前的旧版本多了一些功能。通过`ref`属性可以用来获取到原生DOM。具体情况下面的**浏览器DOM操作**。
-
-### 属性dangerouslySetInnerHTML
-
-如果想在 JSX 表达式中显示 HTML 实体，可以会遇到二次转义的问题，因为 React 默认会转义所有字符串，为了防止各种 XSS 攻击。`dangerouslySetInnerHTML`允许你插入原生的html（不经过React转义），这种情况就可能带有XSS攻击的可能性就会提高，而且通过此种方法插入的html不会算入虚拟DOM进行对比。
-
-如下面例子，就是经过了二次转义和没经过二次转义的区别：
-
-```jsx
-//自定义组件首字母要大写
-var App = React.createClass({
-  render: function() {
-    var data = "&nbsp;我前面有一个空格,但是被二次转义了"
-    var text = <div>{data}</div>
-    var text2 = (
-      <div>
-        &nbsp;我前面有一个空格,没被二次转义，因为在这没使用JSX表达式
-        （{String.fromCharCode(123)+String.fromCharCode(125)}）
-      </div>
-    )
-    return (
-      <div>
-        {text}
-        {text2}
-      </div>
-    );
-  }
-});
-```
-
-codepen例子：[组件的一些特殊属性之dangerouslySetInnerHTML](https://codepen.io/nange/pen/kkPmwr)
 
 ## 参考文章
 
