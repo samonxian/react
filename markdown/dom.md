@@ -12,7 +12,7 @@
 
 通过`this.refs`获取原生DOM分以下两种情况：
 
-- 原生HTML组件
+- 原生HTML标签组件
 
   原生的html组件设置`ref`，可以在父组件中通过`this.refs.xxx`直接获取到子组件的DOM对象。
 

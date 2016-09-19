@@ -267,7 +267,7 @@ HTML 实体可以插入到 JSX 的文本中。
 <div>{'First · Second'}</div>
 ```
 
-安全的做法是先找到 [实体的 Unicode 编号](http://www.fileformat.info/info/unicode/char/b7/index.htm) ，然后在 JavaScript 字符串里使用。
+安全的做法是先找到 [实体的 Unicode 编号](http://www.fileformat.info/info/unicode/char/b7/index.htm?target=_blank) ，然后在 JavaScript 字符串里使用。
 
 ```jsx
 <div>{'First \u00b7 Second'}</div>
@@ -280,7 +280,7 @@ HTML 实体可以插入到 JSX 的文本中。
 <div>{['First ', <span>&middot;</span>, ' Second']}</div>
 ```
 
-万不得已，可以直接[插入原始HTML](/react/tips/dangerously-set-inner-html.html)。
+万不得已，可以直接[插入原始HTML](https://facebook.github.io/react/tips/dangerously-set-inner-html.html?target=_blank)。
 
 ```jsx
 <div dangerouslySetInnerHTML={{__html: 'First &middot; Second'}} />

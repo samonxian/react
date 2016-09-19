@@ -6,7 +6,7 @@
 
 组件分两种类型：
 
-- 原生HTML组件
+- 原生HTML标签组件
 
   原生HTML组件是不用定义的，可以直接使用的，所有组件跟html标签一一对应。如：
 
@@ -102,17 +102,16 @@ ReactDOM.render(<HelloMessage name="Sebastian" />, mountNode);
 `props`是property的缩写，可以理解为HTML标签的attribute，可以自定义。在当前组件访问`props`，使用`this.props`。请把`props`当做只读的（不可以使用`this.props`直接修改props），`props`是用于整个组件树中传递数据和配置。在什么情况下可以使用`props`，请看[组件生命周期](#组件生命周期)
 
 ```jsx
-class Component {
-  constructor(props){
-    super(props);
-  }
-  render(){
+var Component = React.createClass({
+  render: function(){
     return (
         <div title={this.props.title}></div>
     )
   }
-}
+});
+...
 <Component title="test"/>//title就传进去了
+...
 ```
 
 ## PropTypes
@@ -120,11 +119,21 @@ class Component {
 `PropsTypes`是React中用来定义`props`的类型，不符合定义好的类型会报错。建议可复用组件要使用prop验证！接着上面的列子设置`PropsTypes`如下：
 
 ```jsx
+//React.createClass
+React.createClass({
+  propTypes: {}
+});
+//es6
 class Component {
   ...
 }
 Component.PropsType = {
   title: React.PropTypes.string,
+}
+//es7
+class Component {
+  static PropsType = {}
+  ...
 }
 ```
 
@@ -202,20 +211,21 @@ React.createClass({
 如何设置组件默认的`props`？
 
 ```jsx
-//React提供的crateClass创建方式
+//React.crateClass
 var Component = React.createClass({
   getDefaultProps(){
     return {
       //这里设置defaultProps
     }
   }
+  ...
 })
 //ES6
 class Component {
   ...
 }
 Component.defaultProps = {}
-//ES7 stage-0
+//ES7
 class Component {
   static defaultProps = {
     
@@ -231,13 +241,14 @@ class Component {
 那如何设置默认state?
 
 ```jsx
-//React提供的crateClass创建方式
+//React.crateClass
 var Component = React.createClass({
   getInitialState(){
     return {
       //这里设置初始state值
     }
   }
+  ...
 })
 //ES6 && ES7
 class Component {
@@ -250,7 +261,7 @@ class Component {
 
 ## props和state使用方式
 
-尽可能使用`props`当做数据源，`state`用来存放状态值（简单的数据），如复选框、下拉菜单等。
+`props`和`state`是组件基不可少的特性的，需要深入了解。尽可能使用`props`当做数据源，`state`用来存放状态值（简单的数据），如复选框、下拉菜单等。
 
 ## 组件生命周期
 
