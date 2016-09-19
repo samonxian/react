@@ -28,15 +28,32 @@ var App = React.createClass({
 });
 ```
 
-codepen例子：[事件系统之JSX事件绑定](https://codepen.io/nange/pen/XjXNbV)
+codepen例子：[事件系统之JSX事件绑定](https://codepen.io/nange/pen/XjXNbV?target=_blank)
 
 ### 事件回调函数参数传递
 
-- 默认参数
+#### 默认参数
 
-事件绑定回调函数的默认参数是`事件对象`，跟原生事件一样。
+事件绑定回调函数的默认参数是`合成事件对象`。每个合成事件（`SyntheticEvent`）对象都有以下属性：
 
-- 自定义参数
+```jsx
+boolean bubbles
+boolean cancelable
+DOMEventTarget currentTarget
+boolean defaultPrevented
+number eventPhase
+boolean isTrusted
+DOMEvent nativeEvent
+void preventDefault()
+boolean isDefaultPrevented()
+void stopPropagation()
+boolean isPropagationStopped()
+DOMEventTarget target
+number timeStamp
+string type
+```
+
+#### 自定义参数
 
 自定义参数？但是只能传方法啊，怎么自定义参数？
 
@@ -63,17 +80,17 @@ clickEvent3: function(param){
 <button onClick={this.clickEvent3('哈喽2')}>点我查看</button>
 ```
 
-请看codepen: [事件系统之参数传递](https://codepen.io/nange/pen/yaZVJX)
+请看codepen: [事件系统之参数传递](https://codepen.io/nange/pen/yaZVJX?target=_blank)
 
-### 绑定事件上下文问题
+###  绑定事件上下文问题
 
-- 使用bind
+#### 使用bind
 
 ```jsx
 <button onClick={this.clickEvent2.bind(this,'哈喽')}>点我查看</button>
 ```
 
-- 使用ES6箭头函数
+#### 使用ES6箭头函数
 
 ```jsx
 <button onClick={(e)=>{return this.clickEvent(e)}}>点我查看</button>
@@ -81,4 +98,8 @@ clickEvent3: function(param){
 
 ## 绑定浏览器原生事件
 
-在 componentDidMount 方法里面通过绑定的事件就是浏览器原生事件，使用原生事件的时候注意在 componentWillUnmount 解除绑定 removeEventListener。那如何进行原声事件绑定呢，请看后续的**浏览器DOM 操作**。
+在 `componentDidMount `方法里面通过绑定的事件就是浏览器原生事件，使用原生事件的时候注意在 `componentWillUnmount `解除绑定原生事件。那如何进行原生事件绑定呢，请看后续的**浏览器DOM 操作**。
+
+## 参考文章
+
+- [Event System](https://facebook.github.io/react/docs/events-zh-CN.html)

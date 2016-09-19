@@ -44,7 +44,7 @@ var Child = React.createClass({
 });
 ```
 
-请看codepen例子：[单向数据流说明例子](https://codepen.io/nange/pen/vXNqOX)。
+请看codepen例子：[单向数据流说明例子](https://codepen.io/nange/pen/vXNqOX?target=_blank)。
 
 ## 组件之间沟通
 
@@ -125,7 +125,7 @@ class Parent extends React.Component{
 }
 ```
 
-codepen例子[React组件之父子组件沟通](https://codepen.io/nange/pen/KgwRJk) 。
+codepen例子[React组件之父子组件沟通](https://codepen.io/nange/pen/KgwRJk?target=_blank) 。
 
 #### 兄弟组件沟通
 
@@ -192,7 +192,7 @@ codepen例子：[React组件之兄弟组件沟通](https://codepen.io/nange/pen/
 
 但是如果组件层次太深（如下图），上面的兄弟组件沟通方式就效率低了（不建议组件层次太深）。
 
-![](http://cdn.alloyteam.com/wp-content/uploads/2016/01/share-parent-components-278x300.png)
+![](../../react/img/communication-01.png)
 
 React提供了一种上下文方式（挺方便的），可以让子组件直接访问祖先的数据或函数，无需从祖先组件一层层地传递数据到子组件中。
 
@@ -270,7 +270,7 @@ Parent.childContextTypes = {
 }
 ```
 
-codepen例子：[React组件之兄弟组件沟通2](https://codepen.io/nange/pen/VKYBAX)
+codepen例子：[React组件之兄弟组件沟通2](https://codepen.io/nange/pen/VKYBAX?target=_blank)
 
 ### 全局事件
 
@@ -286,6 +286,6 @@ codepen例子：[React组件之兄弟组件沟通2](https://codepen.io/nange/pen
 
 ## 参考文章
 
-- [ReactJS组件间沟通的一些方法](http://www.alloyteam.com/2016/01/some-methods-of-reactjs-communication-between-components/)
-- [React 数据流管理架构之 Redux 介绍](http://www.alloyteam.com/2015/09/react-redux/)
+- [ReactJS组件间沟通的一些方法](http://www.alloyteam.com/2016/01/some-methods-of-reactjs-communication-between-components/?target=_blank)
+- [React 数据流管理架构之 Redux 介绍](http://www.alloyteam.com/2015/09/react-redux/?target=_blank)
 
