@@ -2,6 +2,36 @@
 
 组件（Component）是对数据和方法的简单封装。随着前端开发复杂度的日益提升，组件化开发应运而生。React的每个组件都可以用JSX来表示，React构建页面的基础单元就是React组件。
 
+## 组件类型
+
+组件分两种类型：
+
+- 原生HTML组件
+
+  原生HTML组件是不用定义的，可以直接使用的，所有组件跟html标签一一对应。如：
+
+  ```jsx
+  <div></div>
+  <ul><li></li></ul>
+  ```
+
+- 自定义组件
+
+  自定义组件，我们可以封装各种功能。**在JSX中使用自定义组件首字母必须大写**。
+
+  ```jsx
+  //自定义组件首字母要大写
+  var HelloWorld = React.createClass({
+    render: function() {
+      return (
+        <div>
+          Hello World!
+        </div>
+      );
+    }
+  });
+  ```
+
 ## 组件创建方式
 
 有三种方式，可以创建React组件，下面就分别使用三种方式创建第一个React组件。
@@ -237,7 +267,7 @@ React组件提供了`生命周期`的`钩子函数`去响应组件不同时刻�
 
 `钩子函数`是我们重点关注的地方，下面来详细了解下`生命周期`下的`钩子函数`调用顺序和作用。每个`生命周期`阶段调用的`钩子函数`会略有不同。下面的图片或许对你有帮助。
 
-![组件 生命周期 ](https://cdn-images-1.medium.com/max/800/0*VoYsN6eq7I_wjVV5.png)
+![组件 生命周期 ](../../react/img/component-01.png)
 
 可以查看CodePen在线Demo,[React生命周期](https://codepen.io/nange/pen/RGwPXB)
 
@@ -416,48 +446,12 @@ var App = React.createClass({
 //自定义组件首字母要大写
 var App = React.createClass({
   componentDidMount: function(){
-    //原生的html直接返回DOM对象
     this.refs.input.focus();
   },
-  refresh: function(){
-    //非原生的html,自定义的React组件，返回组件对象，可访问公共方法属性。
-    this.refs.test.refresh();
-  },
   render: function() {
     return (
       <div>
-        {
-          //原生的html
-        }
         <input ref="input"/>
-        {
-          //自定义React组件
-        }
-        <Child ref="test"/>
-        <button onClick={this.refresh.bind(this)}>刷新</button>
-      </div>
-    );
-  }
-});
-var Child = React.createClass({
-  getInitialState: function(){
-    return {
-      text: "看这里",
-    }
-  },
-  componentDidMount: function(){
-   
-  },
-  refresh: function(){
-    console.debug(this.state)
-    this.setState({
-      text: "改变了",
-    })
-  },
-  render: function() {
-    return (
-      <div>
-        {this.state && this.state.text}
       </div>
     );
   }

@@ -12,15 +12,72 @@
 
 - 原生HTML组件
 
+  原生的html组件设置`ref`，可以在父组件中通过`this.refs.xxx`直接获取到子组件的DOM对象。
+
 - 自定义组件
 
-  ### 原生HTML组件	
+  自定义组件设置`ref`，父组件`this.refs.xxx`直接返回组件实例，需要通过`ReactDOM.findDOMNode(this.refs.xx)`获取子组件的DOM对象。`ReactDOM.findDOMNode(this)`获取的是当前父组件DOM注意：**ReactDOM跟React的文件是分开的**。
 
-### 自定义组件
+看个codepen例子：[浏览器DOM操作之ref](https://codepen.io/nange/pen/GjqbaN?target=_blank)
+
+```jsx
+//自定义组件首字母要大写
+var App = React.createClass({
+  componentDidMount: function(){
+    //原生的html直接返回DOM对象
+    this.refs.input.focus();
+    //非原生的html,自定义的React组件，返回组件对象，通过ReactDOM.findDOMNode获取原生DOM
+    var dom = ReactDOM.findDOMNode(this.refs.test);
+    this.setState({
+      width: dom.offsetWidth,
+    })
+  },
+  refresh: function(){
+    //非原生的html,自定义的React组件，返回组件对象，可访问公共方法属性。
+    this.refs.test.refresh();
+  },
+  render: function() {
+    return (
+      <div>
+        <h2>原生的html</h2>
+        <input ref="input"/>
+        <h2>自定义React组件</h2>
+        Child组件的长度为：{this.state && this.state.width}
+        <br />
+        <Child ref="test"/>
+        <button onClick={this.refresh.bind(this)}>刷新子组件</button>
+      </div>
+    );
+  }
+});
+var Child = React.createClass({
+  getInitialState: function(){
+    return {
+      text: "看这里",
+    }
+  },
+  componentDidMount: function(){
+   
+  },
+  refresh: function(){
+    console.debug(this.state)
+    this.setState({
+      text: "改变了",
+    })
+  },
+  render: function() {
+    return (
+      <div>
+        {this.state && this.state.text}
+      </div>
+    );
+  }
+});
+```
 
 ## 通过原生的浏览器DOM获取方式
 
-这个是非常有限制的，我们需要知道设置了`class`或`id`的DOM是否已经渲染了，为了可维护性，建议使用`refs`。下面举个小例子：
+这个是有限制的，我们需要知道设置了`class`或`id`的DOM是否已经渲染了，为了可维护性，建议使用`refs`。下面举个小例子：
 
 ```jsx
 //自定义组件首字母要大写
