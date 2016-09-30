@@ -19,7 +19,7 @@
 
 ### 提高
 
-1. [结合webpack使用](/react/webpack?react=true)
+1. [webpack构建React应用](/react/webpack?react=true)
 2. [阶段性实践1](/react/basic_pratice?react=true)
 3. [路由之react-router](/react/router?react=true)
 4. [数据管理之Redux](/react/redux?react=true)

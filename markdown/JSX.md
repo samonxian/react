@@ -1,6 +1,6 @@
 # JSX
 
-[JSX(JavaScript XML)](http://facebook.github.io/jsx/?target=_blank)是`js`内定义的一套XML语法，可以解析出目标js代码,颠覆传统`js`写法。实质上`HTML`也是`xml`协议，有由浏览器解析，而`JSX`是由`js`解析。当让也可以通过构建工具先解析生成，如`grunt`、`webpack`,这样可以减少代码这行中js解析JSX的时间。JSX原本是使用reactjs官方自己提供的方法处理，2015-7-12日官方[博客文章](http://facebook.github.io/react/blog/2015/06/12/deprecating-jstransform-and-react-tools.html?target=_blank)声明其自身用于JSX语法解析的编译器JSTransform已经过期，不再维护，`ReactJS`和`React Native`已经全部采用第三方`Babel`的JSX编译器实现。
+[JSX(JavaScript XML)](http://facebook.github.io/jsx/?target=_blank)是`js`内定义的一套XML语法，可以解析出目标js代码,颠覆传统`js`写法。实质上`HTML`也是`xml`协议，有由浏览器解析，而`JSX`是由`js`解析。当然也可以通过构建工具先解析生成，如`webpack`（使用babel-loader），这样可以减少代码这行中js解析JSX的时间。JSX原本是使用reactjs官方自己提供的方法处理，2015-7-12日官方[博客文章](http://facebook.github.io/react/blog/2015/06/12/deprecating-jstransform-and-react-tools.html?target=_blank)声明其自身用于JSX语法解析的编译器`JSXTransform`已经过期，不再维护，`ReactJS`和`React Native`已经全部采用第三方`Babel`的JSX编译器实现。
 
 ## 基本语法
 
