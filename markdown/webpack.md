@@ -1150,7 +1150,7 @@ webpack.config.js需要改动的地方是：
 
 入口文件：
 
-需要分生产和开发环境，生产环境是不需要热替换的！生产环境添加了`webpack-hot-middleware`的热替换入口文件。
+需要分生产和开发环境，生产环境是不需要热替换的！开发环境添加了`webpack-hot-middleware`的热替换入口文件。
 
 ```js
 if(isProduction){
@@ -1359,7 +1359,7 @@ demo请看的[demo12](https://github.com/sn-demo/webpack-react-demo?target=_blan
 ···
 output: {
   //需要设置为var,设置为其他的没发现可以
-  libraryTarget: "var",
+  libraryTarget: "var",//默认为var,可以不设置
 }
 ···
 externals: {
@@ -1399,7 +1399,7 @@ externals: {
 有以下几种方式：
 
 - [使用外部资源类库](#使用外部资源类库)
-- [Code Splitting](#Code Splitting)
+- [Code Splitting](#Code-Splitting)
 - [module.noParse](#module.noParse)
 
 ## 参考文章
